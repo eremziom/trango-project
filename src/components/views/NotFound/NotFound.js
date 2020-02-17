@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 const Component = () => {
   return (
     <div>
-      <p>HEADER</p>
+      <p>Not Found</p>
     </div>
   );
 };
 
 export {
-  Component as Header,
-  //Container as HeaderContainer,
+  Component as NotFound,
+  //Container as NotFoundContainer,
 };

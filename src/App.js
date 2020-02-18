@@ -11,7 +11,10 @@ import { Homepage } from './components/views/HomePage/Homepage';
 import { Products } from './components/views/Products/Products';
 import { Promotions } from './components/views/Promotions/Promotions';
 import { Product } from './components/views/Product/Product';
-import { MainLayout} from './components/layout/MainLayout/MainLayout';
+import { MainLayout } from './components/layout/MainLayout/MainLayout';
+import { Cart } from './components/views/Cart/Cart';
+import { Order } from './components/views/Order/Order';
+import { Contact } from './components/views/Contact/Contact';
 import { NotFound } from './components/views/NotFound/NotFound';
 
 const App = () => {
@@ -26,7 +29,9 @@ const App = () => {
               <Route exact path='/products' component={Products} />
               <Route exact path='/promotions' component={Promotions} />
               <Route exact path='/products/:name' component={Product} />
-
+              <Route exact path='/cart' component={Cart} />
+              <Route exact path='/order' component={Order} />
+              <Route exact path='/contact' component={Contact} />
               <Route path='*' component={NotFound} />
             </Switch>
           </MainLayout>

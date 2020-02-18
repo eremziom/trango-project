@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 
 const Component = ({children, link}) => {
   return (
-    <Button component={NavLink} exact to={`${process.env.PUBLIC_URL}${link}`} activeClassName='active'>
+    <Button component={NavLink} exact to={`${process.env.PUBLIC_URL}${link}`} activeClassName={styles.active} className={styles.menuButton}>
       {children}
     </Button>
   );

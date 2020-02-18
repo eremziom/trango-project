@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './Header.module.scss';
 
 const Component = () => {
   return (
     <div>
-      <p>HEADER</p>
+      <p className={styles.logo}>TRANGO TOWERS</p>
     </div>
   );
 };

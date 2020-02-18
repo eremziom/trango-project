@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './MainLayout.module.scss';
 
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,7 +11,7 @@ import { PageNav } from '../PageNav/PageNav';
 
 const Component = ({children}) => {
   return (
-    <div>
+    <div className={styles.screen}>
       <Container maxWidth="lg">
         <AppBar>
           <Toolbar>

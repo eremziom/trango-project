@@ -1,7 +1,42 @@
+@import '../../../styles/settings.scss';
+
 .navi {
-  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .menuButton {
   color: white;
+}
+
+.icon {
+  padding: 3px;
+  margin: 0 5px;
+}
+
+.mainMenu {
+  display: flex;
+}
+
+.mainMenuSmall {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuIcon {
+  color: $lightColor;
+  display: none;
+}
+
+.hide {
+  display: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .mainMenu {
+    display: none;
+  }
+  .menuIcon {
+    display: flex;
+  }
 }

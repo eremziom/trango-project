@@ -1,6 +1,14 @@
 @import '../../../styles/settings.scss';
 
 .title{
-  color: red;
+  text-align: center;
+}
+
+.background {
+  font-family: $mainFont;
+}
+
+.sideSwitch {
+  flex-direction: row-reverse !important;
 }
 

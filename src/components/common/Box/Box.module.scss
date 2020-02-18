@@ -1,0 +1,49 @@
+@import '../../../styles/global.scss';
+
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+
+  .imageContainer {
+    flex: 1 0 0;
+    max-width: 100%;
+    height: 400px;
+
+    .image {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+  }
+
+  .textContainer {
+    flex: 1 0 0;
+    padding: 0 20px 20px 20px;
+    text-align: center;
+    align-self: center;
+    font-size: $mainSize;
+    color: $textColor;
+    .header {
+      border: solid;
+      border-radius: 20px;
+      border-width: 3px;
+      border-color: $activeColor;
+      background-color: $bodyColor;
+    }
+  }
+}
+
+.boxReverse {
+  flex-direction: row-reverse;
+}
+
+@media only screen and (max-width: 767px) {
+  .box {
+    display: block;
+  }
+}
+
+

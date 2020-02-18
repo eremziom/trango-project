@@ -1,7 +1,7 @@
 @import '../../../styles/settings.scss';
 
 .logo {
-  font-family: 'Permanent Marker', cursive;
+  font-family: $logoFont;
   font-size: 25px;
-  color: darkred;
+  color: $logoColor;
 }

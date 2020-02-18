@@ -12,7 +12,7 @@ import { PageNav } from '../PageNav/PageNav';
 const Component = ({children}) => {
   return (
     <div className={styles.screen}>
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" className={styles.container}>
         <AppBar>
           <Toolbar>
             <PageNav />

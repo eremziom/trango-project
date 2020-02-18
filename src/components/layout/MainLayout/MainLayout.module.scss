@@ -1,17 +1,9 @@
 @import '../../../styles/settings.scss';
 
 body {
-  background-color: lightgray;
+  background-color: $bodyColor;
 }
 
-// .screen {
-//   background-image: url('https://images.pexels.com/photos/3077882/pexels-photo-3077882.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
-//   object-fit: cover;
-//   height: 100%;
-//   width: 100%;
-// }
-
-// @media only screen and (min-width: 1280px) {
-//   body {
-//   }
-// }
+.container {
+  background-color: $containerColor;
+}

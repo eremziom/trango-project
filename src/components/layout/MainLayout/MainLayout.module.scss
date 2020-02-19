@@ -2,8 +2,14 @@
 
 body {
   background-color: $bodyColor;
+  position: relative;
 }
 
 .container {
   background-color: $containerColor;
+  min-height: 89.5vh;
+}
+
+.appBar {
+  background-color: $barColor;
 }

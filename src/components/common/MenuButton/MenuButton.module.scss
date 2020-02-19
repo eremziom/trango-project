@@ -2,6 +2,11 @@
 
 .menuButton {
   color: $lightColor;
+  font-family: $logoFont;
+}
+
+.menuButton:hover {
+  background-color: $logoColor;
 }
 
 .active {

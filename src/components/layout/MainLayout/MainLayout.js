@@ -8,12 +8,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 import { Header } from '../Header/Header';
 import { PageNav } from '../PageNav/PageNav';
+import { Footer } from '../Footer/Footer';
 
 const Component = ({children}) => {
   return (
     <div className={styles.screen}>
       <Container maxWidth="lg" className={styles.container}>
-        <AppBar>
+        <AppBar className={styles.appBar}>
           <Toolbar>
             <PageNav />
           </Toolbar>
@@ -21,6 +22,7 @@ const Component = ({children}) => {
         <Toolbar></Toolbar>
         <Header />
         {children}
+        <Footer />
       </Container>
     </div>
   );

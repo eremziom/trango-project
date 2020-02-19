@@ -1,0 +1,54 @@
+@import '../../../styles/settings.scss';
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: -10vh;
+  width: 100%;
+  height: 10vh;
+  background-color: $barColor;
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  font-family: $mainFont;
+  color: $containerColor;
+  .logo{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    .title {
+      color: $activeColor;
+      font-family: $logoFont;
+      font-size: 20px;
+      margin: 10px 0;
+    }
+  }
+  .contact {
+    align-self: center;
+    padding-top: 20px;
+  }
+  .links {
+    text-decoration: none;
+    color: inherit;
+    padding-right: 20px;
+  }
+  .developer {
+    align-self: center;
+    padding-top: 20px;
+    .sign {
+      font-family: $signFont;
+    }
+  }
+  .icon {
+    font-size: 1rem;
+    margin-right: 10px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .footer {
+    display: block;
+    height: 260px;
+    bottom: -260px;
+  }
+}

@@ -1,1 +1,15 @@
 @import '../../../styles/settings.scss';
+
+.title{
+  text-align: center;
+}
+
+.background {
+  font-family: $mainFont;
+}
+
+.promoContainer {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}

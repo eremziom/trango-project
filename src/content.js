@@ -9,3 +9,24 @@ export const homepageText3 = 'Ut enim ad minima veniam, quis nostrum exercitatio
 export const homepageHeader1 = 'Best equipment for highest goals';
 export const homepageHeader2 = 'Safety first!';
 export const homepageHeader3 = 'Customization - follow the trends';
+
+export const promoPhoto1 = 'https://images.pexels.com/photos/714258/pexels-photo-714258.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
+export const promoPhoto2 = 'https://images.pexels.com/photos/50987/money-card-business-credit-card-50987.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
+export const promoPhoto3 = 'https://images.pexels.com/photos/675970/present-still-life-ribbon-blue-675970.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
+
+
+export const promoText1 = 'This winter we celebrate 40th aniversary of first winter Everest climb. We have prepared special offer for all winter equipment: -20%';
+export const promoText2 = 'If You are our loyal clinet, and you order stuff constantly, be sure we will appreciate it! -10% for all products, and delivery free of charge';
+export const promoText3 = 'Do you plan bigger order? This is perfect moment! For every 3 products ordered, you will be gifted one more absolutely free of charge!';
+
+export const promoHeader1 = 'Winter Everest Aniversary';
+export const promoHeader2 = 'Constant Clients Promotion';
+export const promoHeader3 = '3 + 1 Free Of Charge';
+
+export const promoValue1 = '-20%';
+export const promoValue2 = '-10%';
+export const promoValue3 = '3+1!';
+
+export const promoDescription1 = 'for all winter equipment';
+export const promoDescription2 = '+ delivery free of charge';
+export const promoDescription3 = 'fourth product is a gift';

@@ -10,6 +10,9 @@ const Component = () => {
   return (
     <div className={styles.background}>
       <h2 className={styles.title}>Welcome to Trango Towers Crafting Centre</h2>
+      <div className={styles.description}>
+        <p>We design, craft and customize climbing equipment. Prepare for journey through world of epic ropes, carabiners and ice stuff</p>
+      </div>
       <div>
         <Box photo={homepagePhoto1} header={homepageHeader1}> {homepageText1} </Box>
         <Box photo={homepagePhoto2} header={homepageHeader2} reverse='true'> {homepageText2} </Box>

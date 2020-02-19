@@ -1,7 +1,47 @@
 @import '../../../styles/settings.scss';
 
-.logo {
-  font-family: $logoFont;
-  font-size: 25px;
-  color: $logoColor;
+.headBar {
+  display: flex;
+  border-bottom: solid;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: $headColor;
+  border-color: $textColor;
+  .logo {
+    font-family: $logoFont;
+    font-size: 25px;
+    color: $logoColor;
+    flex: 3 0 0;
+  }
+  .search {
+    display: flex;
+    flex: 1 0 0;
+    height: 40px;
+    max-width: 300px;
+    background-color: $bodyColor;
+    align-self: center;
+    border-radius: 10px;
+    margin-right: 10px;
+    .icon {
+      height: 100%;
+      margin-left: 20px;
+      margin-right: 10px;
+    }
+    .searchField {
+      input{
+      background-color: $bodyColor;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .headBar {
+    display: block;
+    text-align: center;
+    .search {
+      margin: 0 auto 10px;
+    }
+  }
+
 }

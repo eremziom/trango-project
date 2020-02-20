@@ -1,0 +1,19 @@
+@import '../../../styles/settings.scss';
+
+.categoryButton {
+  color: $lightColor;
+  font-family: $logoFont;
+  height: 50px;
+  width: 300px;
+  background-color: $barColor;
+  margin: 5px;
+  z-index: 1000;
+}
+
+.categoryButton:hover {
+  background-color: $logoColor;
+}
+
+.active {
+  color: $activeColor;
+}

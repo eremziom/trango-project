@@ -1,0 +1,13 @@
+@import '../../../styles/settings.scss';
+
+.background {
+  font-family: $mainFont;
+
+}
+
+.productsContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+

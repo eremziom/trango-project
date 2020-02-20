@@ -1,0 +1,20 @@
+@import '../../../styles/global.scss';
+
+.card {
+  margin: 10px 20px 10px 10px;
+  border-radius: 10px;
+
+ .image {
+   height: 300px;
+   width: 250px;
+   object-fit: cover;
+ }
+
+ .wishlist {
+   background-color: $headColor;
+ }
+
+ .cardContent {
+   background-color: $bodyColor;
+ }
+}

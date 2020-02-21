@@ -36,8 +36,12 @@ class Component extends React.Component {
   componentDidMount = () => {
     const { product } = this.state;
     const productName = this.props.product.name;
+    let ropeLength = '';
+    if(this.props.product.category === 'rope'){
+      ropeLength = 40;
+    }
     if(this.props.product){
-      this.setState({product: {...product, name: productName}});
+      this.setState({product: {...product, name: productName, length: ropeLength}});
     }
 
   }

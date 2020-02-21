@@ -3,15 +3,8 @@
 .productCard {
   display: flex;
   .product {
-    flex: 3 0 0;
-  }
-  .custom {
-    flex: 1 0 0;
+    margin: 10px;
   }
 }
 
-@media only screen and (max-width: 1023px) {
-  .productCard {
-      flex-direction: column;
-  }
-}
+

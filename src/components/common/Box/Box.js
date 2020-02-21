@@ -21,7 +21,7 @@ Component.propTypes = {
   children: PropTypes.node,
   photo: PropTypes.string,
   header: PropTypes.string,
-  reverse: PropTypes.bool,
+  reverse: PropTypes.string,
 };
 
 export {

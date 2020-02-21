@@ -54,7 +54,7 @@ const db = {
       category: 'rope',
       price: '5$/m',
       weight: '55g/m',
-      photo: 'https://lh3.googleusercontent.com/proxy/7RaNBMbVnLqV9N8vuI0gSoHcrNVqZlW76z0lycuZ1zf4-j6EXF-t2_WGftbLyHGPO1xK_5RfIH1gAl33WAkY3AgXCsfF_a5cKNUIApgiDw-zVjPBxiioWQTPR0jzEa1W',
+      photo: 'https://www.snowcountry.eu/media/catalog/product/cache/2/image/1200x/9df78eab33525d08d6e5fb8d27136e95/e/d/edelrid-swift-eco-dry-rope-89mm_1.jpg',
       option: {
         diameter: '8.2mm',
         factor: '5',

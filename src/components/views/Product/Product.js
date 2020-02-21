@@ -15,12 +15,9 @@ class Component extends React.Component {
           <div className={styles.product}>
             {db.products.map(product => {
               if(product.name === this.props.match.params.name){
-                return <SingleProduct product={product}/>;
+                return <SingleProduct key={product.id} product={product}/>;
               }
             })}
-          </div>
-          <div className={styles.custom}>
-            b
           </div>
         </div>
       </div>

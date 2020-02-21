@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Products.module.scss';
-import { Category } from '../..//common/Category/Category';
+import { CategoryButton } from '../../common/CategoryButton/CategoryButton';
 import db from '../../../db';
 import { ProductsList } from '../ProductsList/ProductsList';
 
@@ -57,11 +57,14 @@ class Component extends React.Component {
         <div className={styles.categoryMenu}>
           {categories.map(item => {
             return(
-              <Category key={item} onChildClick={this.handleChildClick} category={item}>{item}</Category>
+              <CategoryButton key={item} onChildClick={this.handleChildClick} category={item}>{item}</CategoryButton>
             );
           })}
         </div>
         {this.showCategoryProducts()}
+        <div className={styles.allButton}>
+          {this.state.category ? <CategoryButton onChildClick={this.handleChildClick} category=''>ALL</CategoryButton> : ''}
+        </div>
       </div>
     );
   }

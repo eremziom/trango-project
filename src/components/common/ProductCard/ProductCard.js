@@ -11,11 +11,13 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import { Link } from 'react-router-dom';
+
 const Component = ({photo, name, short}) => {
   return (
     <Card className={styles.card}>
       <div className={styles.container}>
-        <CardActionArea>
+        <CardActionArea component={Link} exact to={`${process.env.PUBLIC_URL}/products/${name}`}>
           <CardMedia
             image={photo}
             title={name}

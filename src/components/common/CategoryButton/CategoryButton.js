@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Category.module.scss';
+import styles from './CategoryButton.module.scss';
 import PropTypes from 'prop-types';
 
 const Component = ({children, onChildClick, category}) => {
@@ -22,6 +22,6 @@ Component.propTypes = {
 };
 
 export {
-  Component as Category,
-  //Container as CategoryContainer,
+  Component as CategoryButton,
+  //Container as CategoryButtonContainer,
 };

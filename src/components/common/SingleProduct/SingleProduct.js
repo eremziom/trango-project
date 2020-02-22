@@ -1,6 +1,10 @@
 import React from 'react';
 import styles from './SingleProduct.module.scss';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+import { addToCart } from '../../../redux/orderRedux';
 
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -10,6 +14,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -58,7 +63,10 @@ class Component extends React.Component {
   };
 
   showState = () => {
-    console.log('hej', this.state);
+    console.log('STATE: ', this.state);
+    const {addToCart} = this.props;
+    const {product} = this.state;
+    addToCart(product);
   }
 
   showOptions = (product) => {
@@ -210,8 +218,8 @@ class Component extends React.Component {
           <Button size="small" color="primary" className={styles.addToCart} onClick={this.showState}>
             <AddShoppingCartIcon className={styles.cartIcon} /> ADD TO CART
           </Button>
-          <Button size="small" color="primary" className={styles.addToCart}>
-            <AddShoppingCartIcon className={styles.cartIcon} /> GO BACK
+          <Button size="small" color="primary" className={styles.addToCart} component={Link} exact to={`${process.env.PUBLIC_URL}/products`}>
+            <ArrowBackIcon className={styles.cartIcon} /> GO BACK
           </Button>
         </CardActions>
       </Card>
@@ -221,9 +229,20 @@ class Component extends React.Component {
 
 Component.propTypes = {
   product: PropTypes.object,
+  addToCart: PropTypes.func,
 };
+
+// const mapStateToProps = state => ({
+//   products: getAll(state),
+// });
+
+const mapDispatchToProps = dispatch => ({
+  addToCart: (order) => dispatch(addToCart(order)),
+});
+
+const Container = connect(null, mapDispatchToProps)(Component);
 
 export {
   Component as SingleProduct,
-  //Container as SingleProductContainer,
+  Container as SingleProductContainer,
 };

@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Products.module.scss';
 import { CategoryButton } from '../../common/CategoryButton/CategoryButton';
-import db from '../../../db';
-import { ProductsList } from '../ProductsList/ProductsList';
+import { ProductsListContainer } from '../ProductsList/ProductsList';
+
+import { connect } from 'react-redux';
+import { getAll } from '../../../redux/productsRedux';
 
 class Component extends React.Component {
   state = {
@@ -12,12 +14,13 @@ class Component extends React.Component {
   };
 
   componentDidMount = () => {
-    this.prepareCategories(db);
+    const {products} = this.props;
+    this.prepareCategories(products);
   }
 
-  prepareCategories = (db) => {
+  prepareCategories = (products) => {
     const categoryArray = [];
-    for(let product of db.products){
+    for(let product of products){
       if(!categoryArray.includes(product.category)){
         categoryArray.push(product.category);
       }
@@ -37,7 +40,7 @@ class Component extends React.Component {
   showCategoryProducts = () => {
     const activeCategory = this.state.category;
     return (
-      <ProductsList category={activeCategory} />
+      <ProductsListContainer category={activeCategory} />
     );
   }
 
@@ -72,9 +75,20 @@ class Component extends React.Component {
 
 Component.propTypes = {
   categories: PropTypes.array,
+  products: PropTypes.array,
 };
+
+const mapStateToProps = state => ({
+  products: getAll(state),
+});
+
+// const mapDispatchToProps = dispatch => ({
+//   fetchPosts: () => dispatch(fetchAllPosts()),
+// });
+
+const Container = connect(mapStateToProps /*mapDispatchToProps*/)(Component);
 
 export {
   Component as Products,
-  //Container as ProductsContainer,
+  Container as ProductsContainer,
 };

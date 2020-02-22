@@ -1,22 +1,22 @@
 import Axios from 'axios';
 
 /* selectors */
+export const getAll = ({products}) => products.data;
+export const getLoadingState = ({products}) => products.loading;
 
 /* action name creator */
-const reducerName = 'order';
+const reducerName = 'products';
 const createActionName = name => `app/${reducerName}/${name}`;
 
 /* action types */
 const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
-const ADD_TO_CART = createActionName('ADD_TO_CART');
 
 /* action creators */
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
-export const addToCart = payload => ({ payload, type: ADD_TO_CART });
 
 /* THUNK */
 // export const fetchAllPosts = () => {
@@ -37,14 +37,6 @@ export const addToCart = payload => ({ payload, type: ADD_TO_CART });
 /* reducer */
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
-    case ADD_TO_CART: {
-      return {
-        ...statePart,
-        data: [
-          ...statePart.data, action.payload,
-        ],
-      };
-    }
     case FETCH_START: {
       return {
         ...statePart,

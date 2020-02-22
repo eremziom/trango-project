@@ -8,9 +8,9 @@ import { StylesProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 
 import { Homepage } from './components/views/HomePage/Homepage';
-import { Products } from './components/views/Products/Products';
+import { ProductsContainer } from './components/views/Products/Products';
 import { Promotions } from './components/views/Promotions/Promotions';
-import { Product } from './components/views/Product/Product';
+import { ProductContainer } from './components/views/Product/Product';
 import { MainLayout } from './components/layout/MainLayout/MainLayout';
 import { Cart } from './components/views/Cart/Cart';
 import { Order } from './components/views/Order/Order';
@@ -26,9 +26,9 @@ const App = () => {
           <MainLayout>
             <Switch>
               <Route exact path='/' component={Homepage} />
-              <Route exact path='/products' component={Products} />
+              <Route exact path='/products' component={ProductsContainer} />
               <Route exact path='/promotions' component={Promotions} />
-              <Route exact path='/products/:name' component={Product} />
+              <Route exact path='/products/:name' component={ProductContainer} />
               <Route exact path='/cart' component={Cart} />
               <Route exact path='/order' component={Order} />
               <Route exact path='/contact' component={Contact} />

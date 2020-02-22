@@ -3,12 +3,13 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import orderReducer from './orderRedux';
-// import loginReducer from './loginRedux';
+import productsReducer from './productsRedux';
 import { initialState } from './initialState';
 
 // define reducers
 const reducers = {
   order: orderReducer,
+  products: productsReducer,
 };
 
 // add blank reducers for initial state properties without reducers

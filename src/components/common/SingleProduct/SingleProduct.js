@@ -6,6 +6,13 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addToCart } from '../../../redux/orderRedux';
 
+import Badge from '@material-ui/core/Badge';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Switch from '@material-ui/core/Switch';
+
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -35,6 +42,7 @@ class Component extends React.Component {
       graver: '',
       length: '',
       wish: '',
+      count: 1,
     },
   }
 
@@ -88,6 +96,17 @@ class Component extends React.Component {
     );
   };
 
+  increaseQuantity =  () => {
+    const {product} = this.state;
+    let newNumber = product.count + 1;
+    this.setState({product: {...product, count: newNumber}});
+  }
+
+  decreaseQuantity =  () => {
+    const {product} = this.state;
+    let newNumber = product.count - 1;
+    this.setState({product: {...product, count: newNumber}});
+  }
 
   render(){
     const {product} = this.props;
@@ -212,6 +231,28 @@ class Component extends React.Component {
               onChange={updateOrder}
               name="wish"
             />
+            <div className={styles.quantity}>
+              <Typography id="standard-basic" gutterBottom>
+                Quantity
+              </Typography>
+              <Badge color="secondary" badgeContent={this.state.product.count}>
+                <ShoppingCartIcon />
+              </Badge>
+              <ButtonGroup>
+                <Button
+                  aria-label="reduce"
+                  onClick={this.decreaseQuantity}
+                >
+                  <RemoveIcon fontSize="small" />
+                </Button>
+                <Button
+                  aria-label="increase"
+                  onClick={this.increaseQuantity}
+                >
+                  <AddIcon fontSize="small" />
+                </Button>
+              </ButtonGroup>
+            </div>
           </CardContent>
         </div>
         <CardActions className={styles.buttons}>

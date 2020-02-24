@@ -1,6 +1,7 @@
 import Axios from 'axios';
 
 /* selectors */
+export const getAll = ({order}) => order.cart;
 
 /* action name creator */
 const reducerName = 'order';
@@ -40,8 +41,8 @@ export default function reducer(statePart = [], action = {}) {
     case ADD_TO_CART: {
       return {
         ...statePart,
-        data: [
-          ...statePart.data, action.payload,
+        cart: [
+          ...statePart.cart, action.payload,
         ],
       };
     }

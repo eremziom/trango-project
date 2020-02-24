@@ -11,7 +11,6 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import Switch from '@material-ui/core/Switch';
 
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -43,18 +42,21 @@ class Component extends React.Component {
       length: '',
       wish: '',
       count: 1,
+      price: '',
     },
   }
 
   componentDidMount = () => {
     const { product } = this.state;
     const productName = this.props.product.name;
+    const productPrice = this.props.product.price;
+    const productCategory = this.props.product.category;
     let ropeLength = '';
     if(this.props.product.category === 'rope'){
       ropeLength = 40;
     }
     if(this.props.product){
-      this.setState({product: {...product, name: productName, length: ropeLength}});
+      this.setState({product: {...product, name: productName, length: ropeLength, price: productPrice, category: productCategory}});
     }
 
   }
@@ -105,6 +107,9 @@ class Component extends React.Component {
   decreaseQuantity =  () => {
     const {product} = this.state;
     let newNumber = product.count - 1;
+    if(newNumber < 1){
+      newNumber = 1;
+    }
     this.setState({product: {...product, count: newNumber}});
   }
 
@@ -170,10 +175,15 @@ class Component extends React.Component {
               </Typography>
 
               {this.showOptions(product)}
-
-              <Typography variant="h4" color="textSecondary" component="h4" className={styles.text}>
-                Price: {product.price}
-              </Typography>
+              {product.category === 'rope' ?
+                <Typography variant="h4" color="textSecondary" component="h4" className={styles.text}>
+                  Price: {product.price} $/m
+                </Typography>
+                :
+                <Typography variant="h4" color="textSecondary" component="h4" className={styles.text}>
+                  Price: {product.price} $
+                </Typography>
+              }
             </div>
           </CardContent>
           <CardContent className={styles.cardCustom}>
@@ -182,7 +192,7 @@ class Component extends React.Component {
                 Customization
               </Typography>
               <FormControl component="fieldset">
-                <FormLabel component="legend">Color</FormLabel>
+                <FormLabel component="legend">Color (2$)</FormLabel>
                 <RadioGroup aria-label="color" name="color" onChange={updateOrder}>
                   <FormControlLabel value="red" control={<Radio />} label="Red" />
                   <FormControlLabel value="yellow" control={<Radio />} label="Yellow" />
@@ -198,7 +208,7 @@ class Component extends React.Component {
                 </RadioGroup>
               </FormControl>
               <FormControl component="fieldset">
-                <FormLabel component="legend">Graver</FormLabel>
+                <FormLabel component="legend">Graver(5$)</FormLabel>
                 <RadioGroup aria-label="graver" name="graver" onChange={updateOrder}>
                   <FormControlLabel value="none" control={<Radio />} label="None" />
                   <FormControlLabel value="standard" control={<Radio />} label="Standard" />

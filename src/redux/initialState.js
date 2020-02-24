@@ -2,7 +2,7 @@ import db from '../db';
 
 export const initialState = {
   order: {
-    data: '',
+    cart: '',
     loading: {
       active: false,
       error: false,

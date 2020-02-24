@@ -73,10 +73,30 @@ class Component extends React.Component {
   };
 
   showState = () => {
-    console.log('STATE: ', this.state);
     const {addToCart} = this.props;
     const {product} = this.state;
+    this.setPrice(product);
     addToCart(product);
+  }
+
+  setPrice = (product) => {
+    product.fullPrice = product.price;
+    let additionalPrice = '';
+    if(product.color){
+      additionalPrice = 2;
+    }
+    if(product.graver){
+      additionalPrice = 5;
+    }
+    if(product.color && product.graver){
+      additionalPrice = 7;
+    }
+    if(product.category === 'rope'){
+      product.fullPrice = (product.price * product.length + additionalPrice) * product.count;
+    } else {
+      product.fullPrice = (product.price + additionalPrice) * product.count;
+    }
+    return product.fullPrice;
   }
 
   showOptions = (product) => {

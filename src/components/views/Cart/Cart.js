@@ -57,21 +57,23 @@ class Component extends React.Component {
   }
 
   setPrice = (product) => {
-    let additionalPrice = '';
-    if(product.color){
-      additionalPrice = 2;
+    return product.fullPrice * product.count;
+  }
+
+  showTotalPrice = () => {
+    let priceTotal = 0;
+    const {cart} = this.state;
+    for(let product of cart){
+      priceTotal = priceTotal + (product.fullPrice * product.count);
     }
-    if(product.graver){
-      additionalPrice = 5;
-    }
-    if(product.color && product.graver){
-      additionalPrice = 7;
-    }
-    if(product.category === 'rope'){
-      return (product.price * product.length + additionalPrice) * product.count + '$';
-    } else {
-      return (product.price + additionalPrice) * product.count + '$';
-    }
+    return priceTotal;
+  }
+
+  deleteProduct = (product) => {
+    const {cart} = this.state;
+    let newCart = cart;
+    newCart.splice(newCart.indexOf(product), 1);
+    this.setState({cart: newCart});
   }
 
   render(){
@@ -126,14 +128,16 @@ class Component extends React.Component {
                         </Button>
                       </ButtonGroup>
                     </TableCell>
-                    <TableCell align="right">{this.setPrice(product)}</TableCell>
-                    <TableCell align="right"></TableCell>
+                    <TableCell align="right" className={styles.price}>{this.setPrice(product)}</TableCell>
+                    <TableCell align="right"><Button onClick={() => this.deleteProduct(product)}>Delete</Button></TableCell>
                   </TableRow>
                 );
               }) : ''}
             </TableBody>
           </Table>
+          <div>Total Price: {this.showTotalPrice()}</div>
         </TableContainer>
+
       </div>
     );
   }

@@ -13,7 +13,7 @@ import { Promotions } from './components/views/Promotions/Promotions';
 import { ProductContainer } from './components/views/Product/Product';
 import { MainLayout } from './components/layout/MainLayout/MainLayout';
 import { CartContainer } from './components/views/Cart/Cart';
-import { Order } from './components/views/Order/Order';
+import { OrderContainer } from './components/views/Order/Order';
 import { Contact } from './components/views/Contact/Contact';
 import { NotFound } from './components/views/NotFound/NotFound';
 
@@ -30,7 +30,7 @@ const App = () => {
               <Route exact path='/promotions' component={Promotions} />
               <Route exact path='/products/:name' component={ProductContainer} />
               <Route exact path='/cart' component={CartContainer} />
-              <Route exact path='/order' component={Order} />
+              <Route exact path='/order' component={OrderContainer} />
               <Route exact path='/contact' component={Contact} />
               <Route path='*' component={NotFound} />
             </Switch>

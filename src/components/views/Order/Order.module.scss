@@ -1,17 +1,59 @@
 @import '../../../styles/settings.scss';
 
+.title{
+  text-align: center;
+  font-family: $mainFont;
+}
+
 .container {
   display: flex;
+  justify-content: space-between;
+  font-family: $mainFont;
+
   .form {
     flex: 3 0 0;
     border: solid;
     border-radius: 10px;
     border-width: 5px;
     border-color: $barColor;
+    margin: 10px 0;
   }
   .summary {
     flex: 2 0 0;
+    border: solid;
+    border-radius: 10px;
+    border-width: 5px;
+    border-color: $barColor;
     margin: 10px;
+    text-align: center;
+    .product {
+      border: solid;
+      border-radius: 10px;
+      border-width: 3px;
+      margin: 5px;
+      background-color: $boxColor;
+    }
+    .customization {
+      p{
+        margin: 0;
+      }
+    }
+    .sumUp {
+      display: flex;
+      border: solid;
+      border-radius: 10px;
+      border-width: 3px;
+      margin: 5px;
+      background-color: $barColor;
+      .sumNumbers{
+        color: $lightColor;
+        font-size: 16px;
+        span{
+          font-size: 25px;
+          color: $containerColor;
+        }
+      }
+    }
   }
   p{
     text-align: center;
@@ -40,11 +82,11 @@
   justify-content: space-evenly;
   flex-wrap: wrap;
   width: 100%;
-  margin: 10px;
-    div {
-      margin: 0 10px 10px 10px;
-      width: 95%;
-    }
+  margin: 10px 0;
+  div {
+    margin: 0 10px 10px 10px;
+    width: 95%;
+  }
 
 }
 
@@ -65,11 +107,28 @@
 @media only screen and (max-width: 1023px) {
   .container {
     flex-direction: column;
+    .summary{
+      .box {
+        display: flex;
+        flex-wrap: wrap;
+        .product {
+          flex: 1 0 0;
+          min-width: 250px;
+        }
+      }
+    }
   }
   .formBlock {
-    justify-content: flex-start;
-  }
-  .order {
     justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .container {
+    .summary{
+      .sumUp {
+        display: block;
+      }
+    }
   }
 }

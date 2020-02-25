@@ -2,6 +2,7 @@ import Axios from 'axios';
 
 /* selectors */
 export const getAll = ({order}) => order.cart;
+export const getCustomerData = ({order}) => order.customerData;
 
 /* action name creator */
 const reducerName = 'order';

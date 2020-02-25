@@ -81,7 +81,7 @@ class Component extends React.Component {
 
   setPrice = (product) => {
     product.fullPrice = product.price;
-    let additionalPrice = '';
+    let additionalPrice = 0;
     if(product.color){
       additionalPrice = 2;
     }
@@ -92,9 +92,9 @@ class Component extends React.Component {
       additionalPrice = 7;
     }
     if(product.category === 'rope'){
-      product.fullPrice = (product.price * product.length + additionalPrice) * product.count;
+      product.fullPrice = (product.price * product.length + additionalPrice);
     } else {
-      product.fullPrice = (product.price + additionalPrice) * product.count;
+      product.fullPrice = (product.price + additionalPrice);
     }
     return product.fullPrice;
   }

@@ -1,0 +1,75 @@
+@import '../../../styles/settings.scss';
+
+.container {
+  display: flex;
+  .form {
+    flex: 3 0 0;
+    border: solid;
+    border-radius: 10px;
+    border-width: 5px;
+    border-color: $barColor;
+  }
+  .summary {
+    flex: 2 0 0;
+    margin: 10px;
+  }
+  p{
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.panel {
+  background-color: $containerColor;
+  .panelBar {
+    padding: 0;
+    div {
+      margin: 0;
+    }
+  }
+  .delivery {
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+}
+
+.formBlock {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 10px;
+    div {
+      margin: 0 10px 10px 10px;
+      width: 95%;
+    }
+
+}
+
+.order {
+  background-color: $activeColor;
+  &:hover {
+    color: $barColor;
+    background-color: $boxColor;
+  }
+  span {
+    font-size: 20px;
+  }
+  .sendIcon {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .container {
+    flex-direction: column;
+  }
+  .formBlock {
+    justify-content: flex-start;
+  }
+  .order {
+    justify-content: center;
+  }
+}

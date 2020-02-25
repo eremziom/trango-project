@@ -4,10 +4,29 @@
   display: block;
 }
 
-.buttons {
+.quantityButtons {
   margin-left: 10px;
 }
 
 .price {
 
+}
+
+.buttons{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  margin: 10px;
+  .addToCart {
+    background-color: $activeColor;
+    &:hover {
+      color: $barColor;
+    }
+    span {
+      font-size: 20px;
+    }
+    .cartIcon {
+      font-size: 30px;
+    }
+  }
 }

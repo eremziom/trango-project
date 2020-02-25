@@ -12,12 +12,14 @@ const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
 const ADD_TO_CART = createActionName('ADD_TO_CART');
+const GO_TO_ORDER = createActionName('GO_TO_ORDER');
 
 /* action creators */
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
 export const addToCart = payload => ({ payload, type: ADD_TO_CART });
+export const goToOrder = payload => ({payload, type: GO_TO_ORDER});
 
 /* THUNK */
 // export const fetchAllPosts = () => {
@@ -44,6 +46,13 @@ export default function reducer(statePart = [], action = {}) {
         cart: [
           ...statePart.cart, action.payload,
         ],
+      };
+    }
+    case GO_TO_ORDER: {
+      return {
+        ...statePart,
+        cart: action.payload,
+
       };
     }
     case FETCH_START: {

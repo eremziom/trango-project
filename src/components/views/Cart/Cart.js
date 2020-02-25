@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Cart.module.scss';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { getAll } from '../../../redux/orderRedux';
+import { getAll, goToOrder } from '../../../redux/orderRedux';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -17,6 +18,9 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import LocalShippingIcon from '@material-ui/icons/LocalShipping';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 class Component extends React.Component {
 
@@ -29,11 +33,11 @@ class Component extends React.Component {
     this.setState({cart: stateCart});
   }
 
-  increaseQuantity =  (name) => {
+  increaseQuantity =  (prod) => {
     const {cart} = this.state;
     let newCart = cart;
     for(let product of newCart){
-      if(name === product.name){
+      if(prod === product){
         let newNumber = product.count + 1;
         product.count = newNumber;
       }
@@ -41,11 +45,11 @@ class Component extends React.Component {
     this.setState({cart: newCart});
   }
 
-  decreaseQuantity =  (name) => {
+  decreaseQuantity =  (prod) => {
     const {cart} = this.state;
     let newCart = cart;
     for(let product of newCart){
-      if(name === product.name){
+      if(prod === product){
         let newNumber = product.count - 1;
         if(newNumber < 1){
           newNumber = 1;
@@ -74,6 +78,14 @@ class Component extends React.Component {
     let newCart = cart;
     newCart.splice(newCart.indexOf(product), 1);
     this.setState({cart: newCart});
+  }
+
+  toOrder = () => {
+    const {goToOrder} = this.props;
+    const {cart} = this.state;
+
+    goToOrder(cart);
+    this.props.history.push('/order');
   }
 
   render(){
@@ -113,29 +125,37 @@ class Component extends React.Component {
                     </TableCell>
                     <TableCell align="right">
                       {product.count}.pcs
-                      <ButtonGroup className={styles.buttons}>
+                      <ButtonGroup className={styles.quantityButtons}>
                         <Button
                           aria-label="reduce"
-                          onClick={() => this.decreaseQuantity(product.name)}
+                          onClick={() => this.decreaseQuantity(product)}
                         >
                           <RemoveIcon fontSize="small" />
                         </Button>
                         <Button
                           aria-label="increase"
-                          onClick={() => this.increaseQuantity(product.name)}
+                          onClick={() => this.increaseQuantity(product)}
                         >
                           <AddIcon fontSize="small" />
                         </Button>
                       </ButtonGroup>
                     </TableCell>
                     <TableCell align="right" className={styles.price}>{this.setPrice(product)}</TableCell>
-                    <TableCell align="right"><Button onClick={() => this.deleteProduct(product)}>Delete</Button></TableCell>
+                    <TableCell align="right"><Button onClick={() => this.deleteProduct(product)}><DeleteForeverIcon />Delete</Button></TableCell>
                   </TableRow>
                 );
               }) : ''}
             </TableBody>
           </Table>
           <div>Total Price: {this.showTotalPrice()}</div>
+          <div className={styles.buttons}>
+            <Button size="small" color="primary" className={styles.addToCart} onClick={this.toOrder}>
+              <LocalShippingIcon className={styles.cartIcon} /> Order
+            </Button>
+            <Button size="small" color="primary" className={styles.addToCart} component={Link} exact to={`${process.env.PUBLIC_URL}/products`}>
+              <ArrowBackIcon className={styles.cartIcon} /> GO BACK
+            </Button>
+          </div>
         </TableContainer>
 
       </div>
@@ -145,17 +165,19 @@ class Component extends React.Component {
 
 Component.propTypes = {
   stateCart: PropTypes.array,
+  goToOrder: PropTypes.func,
+  history: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
   stateCart: getAll(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   fetchPosts: () => dispatch(fetchAllPosts()),
-// });
+const mapDispatchToProps = dispatch => ({
+  goToOrder: (payload) => dispatch(goToOrder(payload)),
+});
 
-const Container = connect(mapStateToProps /*mapDispatchToProps*/)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
   Component as Cart,

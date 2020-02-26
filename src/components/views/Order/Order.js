@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Order.module.scss';
 
 import { connect } from 'react-redux';
-import { getCustomerData, getAll } from '../../../redux/orderRedux';
+import { getAll, addCustomer } from '../../../redux/orderRedux';
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -18,11 +18,28 @@ class Component extends React.Component {
 
   state = {
     cart: '',
+    customerData: '',
+    details: '',
   }
 
   componentDidMount = () => {
     const {cartData} = this.props;
     this.setState({cart: cartData});
+  }
+
+  updateTextField = ({target}) => {
+    const { customerData } = this.state;
+    const { value, name } = target;
+    this.setState({customerData: {...customerData, [name]: value}});
+  }
+
+  updateData = async () => {
+    const {cartData} = this.props;
+    const { details } = this.state;
+    const totalPrice = await this.countPrice(cartData);
+    const date = document.getElementById('date-input');
+
+    this.setState({details: {...details, orderDate: date.value, totalPrice: totalPrice}});
   }
 
   giveDate = () => {
@@ -57,8 +74,16 @@ class Component extends React.Component {
     return productsPrice;
   }
 
+  sendOrder = async () => {
+    const {addCustomer} = this.props;
+    await this.updateData();
+
+    addCustomer(this.state);
+  }
+
   render() {
     const {cartData} = this.props;
+    const {updateTextField, sendOrder} = this;
     return (
       <div className={styles.background}>
         <h2 className={styles.title}>Order Summary</h2>
@@ -66,47 +91,47 @@ class Component extends React.Component {
           <form className={styles.form} noValidate autoComplete="off">
             <p>Customer Data</p>
             <div className={styles.formBlock}>
-              <TextField id="filled-basic" label="Name" variant="filled" />
-              <TextField id="filled-basic" label="Surname" variant="filled" />
-              <TextField id="filled-basic" label="phone number" variant="filled" />
-              <TextField id="filled-basic" label="email" variant="filled" />
-              <TextField id="filled-basic" label="repeat email" variant="filled" />
+              <TextField id="first-name-input" label="First Name" variant="filled" name="firstName" onChange={updateTextField}/>
+              <TextField id="last-name-input" label="Last Name" variant="filled" name="lastName" onChange={updateTextField}/>
+              <TextField id="phone-input" label="phone number" variant="filled" name="phone" onChange={updateTextField}/>
+              <TextField id="emial-input" label="email" variant="filled" name="email" onChange={updateTextField}/>
+              <TextField id="email-confirm-input" label="confirm email" variant="filled"/>
             </div>
-            <p>Payment Addres</p>
+            <p>Payment Address</p>
             <div className={styles.formBlock}>
-              <TextField id="filled-basic" label="Street" variant="filled" />
-              <TextField id="filled-basic" label="Postal Code" variant="filled" />
-              <TextField id="filled-basic" label="Town" variant="filled" />
-              <TextField id="filled-basic" label="Country" variant="filled" />
+              <TextField id="address-street-input" label="Street" variant="filled" name="addressStreet" onChange={updateTextField}/>
+              <TextField id="address-postalcode-input" label="Postal Code" variant="filled" name="addressCode" onChange={updateTextField}/>
+              <TextField id="address-town-input" label="Town" variant="filled" name="addressTown" onChange={updateTextField}/>
+              <TextField id="address-country-input" label="Country" variant="filled" name="addressCountry" onChange={updateTextField}/>
             </div>
             <ExpansionPanel className={styles.panel}>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2a-content"
-                id="panel2a-header"
+                aria-controls="panel-content"
+                id="panel-header"
                 className={styles.panelBar}
               >
                 <p>Delivery Addres (if different)</p>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails className={styles.delivery}>
                 <div className={styles.formBlock}>
-                  <TextField id="filled-basic" label="Street" variant="filled" />
-                  <TextField id="filled-basic" label="Postal Code" variant="filled" />
-                  <TextField id="filled-basic" label="Town" variant="filled" />
-                  <TextField id="filled-basic" label="Country" variant="filled" />
+                  <TextField id="delivery-street-input" label="Street" variant="filled" name="deliveryStreet" onChange={updateTextField}/>
+                  <TextField id="delivery-postalcode-input" label="Postal Code" variant="filled" name="deliveryCode" onChange={updateTextField}/>
+                  <TextField id="delivery-town-input" label="Town" variant="filled" name="deliveryTown" onChange={updateTextField}/>
+                  <TextField id="delivery-country-input" label="Country" variant="filled" name="deliveryCountry" onChange={updateTextField}/>
                 </div>
               </ExpansionPanelDetails>
             </ExpansionPanel>
             <div className={styles.formBlock}>
               <TextField disabled
-                id="pubDate-input"
+                id="date-input"
                 label="Order Date"
                 type="text"
                 variant="filled"
                 value={this.giveDate()}
-                name='pubDate'
+                name='date'
               />
-              <Button size="small" color="primary" className={styles.order}>
+              <Button size="small" color="primary" className={styles.order} onClick={sendOrder}>
                 <SendIcon className={styles.sendIcon} /> Confirm and Send
               </Button>
             </div>
@@ -145,18 +170,18 @@ class Component extends React.Component {
 
 Component.propTypes = {
   cartData: PropTypes.array,
+  addCustomer: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
-  userData: getCustomerData(state),
   cartData: getAll(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   goToOrder: (payload) => dispatch(goToOrder(payload)),
-// });
+const mapDispatchToProps = dispatch => ({
+  addCustomer: (payload) => dispatch(addCustomer(payload)),
+});
 
-const Container = connect(mapStateToProps, /*mapDispatchToProps*/)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 
 export {

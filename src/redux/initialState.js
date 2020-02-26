@@ -2,8 +2,11 @@ import db from '../db';
 
 export const initialState = {
   order: {
-    cart: '',
-    customerData: '',
+    orderData:{
+      cart: '',
+      customerData: '',
+      details: '',
+    },
     loading: {
       active: false,
       error: false,

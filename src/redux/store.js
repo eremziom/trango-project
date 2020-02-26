@@ -1,6 +1,6 @@
-import {combineReducers, createStore, applyMiddleware} from 'redux';
+import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
+//import { composeWithDevTools } from 'redux-devtools-extension';
 
 import orderReducer from './orderRedux';
 import productsReducer from './productsRedux';
@@ -25,8 +25,12 @@ const combinedReducers = combineReducers(reducers);
 const store = createStore(
   combinedReducers,
   initialState,
-  composeWithDevTools(
-    applyMiddleware(thunk)
+  // composeWithDevTools(
+  //   applyMiddleware(thunk)
+  // )
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
 

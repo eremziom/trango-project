@@ -5,7 +5,7 @@ import { CategoryButton } from '../../common/CategoryButton/CategoryButton';
 import { ProductsListContainer } from '../ProductsList/ProductsList';
 
 import { connect } from 'react-redux';
-import { getAll } from '../../../redux/productsRedux';
+import { getAll, fetchAllProducts } from '../../../redux/productsRedux';
 
 class Component extends React.Component {
   state = {
@@ -13,12 +13,19 @@ class Component extends React.Component {
     categories: [],
   };
 
-  componentDidMount = () => {
-    const {products} = this.props;
-    this.prepareCategories(products);
+  componentDidMount = async () => {
+    const { fetchProducts } = this.props;
+    await fetchProducts();
+    await this.timeout(500);
+    this.prepareCategories();
   }
 
-  prepareCategories = (products) => {
+  timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  prepareCategories = () => {
+    const {products} = this.props;
     const categoryArray = [];
     for(let product of products){
       if(!categoryArray.includes(product.category)){
@@ -76,17 +83,18 @@ class Component extends React.Component {
 Component.propTypes = {
   categories: PropTypes.array,
   products: PropTypes.array,
+  fetchProducts: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   products: getAll(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   fetchPosts: () => dispatch(fetchAllPosts()),
-// });
+const mapDispatchToProps = dispatch => ({
+  fetchProducts: () => dispatch(fetchAllProducts()),
+});
 
-const Container = connect(mapStateToProps /*mapDispatchToProps*/)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
   Component as Products,

@@ -4,7 +4,7 @@ import styles from './ProductsList.module.scss';
 
 
 import { connect } from 'react-redux';
-import { getAll } from '../../../redux/productsRedux';
+import { getAll, fetchAllProducts } from '../../../redux/productsRedux';
 
 import { ProductCard } from '../../common/ProductCard/ProductCard';
 
@@ -21,11 +21,11 @@ class Component extends React.Component {
                 <ProductCard key={product.id} name={product.name} photo={product.photo} short='lorem ipsum'></ProductCard>
               );
             }
-          }) : products.map(product => {
+          }) : products ? products.map(product => {
             return (
               <ProductCard key={product.id} name={product.name} photo={product.photo} short='lorem ipsum'></ProductCard>
             );
-          })}
+          }): ''}
         </div>
       </div>
     );
@@ -41,11 +41,11 @@ const mapStateToProps = state => ({
   products: getAll(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   fetchPosts: () => dispatch(fetchAllPosts()),
-// });
+const mapDispatchToProps = dispatch => ({
+  fetchProducts: () => dispatch(fetchAllProducts()),
+});
 
-const Container = connect(mapStateToProps /*mapDispatchToProps*/)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
   Component as ProductsList,

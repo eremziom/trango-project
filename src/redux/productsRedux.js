@@ -19,20 +19,20 @@ export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
 
 /* THUNK */
-// export const fetchAllPosts = () => {
-//   return (dispatch, getState) => {
-//     dispatch(fetchStarted());
+export const fetchAllProducts = () => {
+  return (dispatch, getState) => {
+    dispatch(fetchStarted());
 
-//     Axios
-//       .get('http://localhost:8000/api/posts')
-//       .then(res => {
-//         dispatch(fetchSuccess(res.data));
-//       })
-//       .catch(err => {
-//         dispatch(fetchError(err.message || true));
-//       });
-//   };
-// };
+    Axios
+      .get('http://localhost:8000/api/products')
+      .then(res => {
+        dispatch(fetchSuccess(res.data));
+      })
+      .catch(err => {
+        dispatch(fetchError(err.message || true));
+      });
+  };
+};
 
 /* reducer */
 export default function reducer(statePart = [], action = {}) {

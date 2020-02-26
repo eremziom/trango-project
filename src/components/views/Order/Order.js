@@ -91,18 +91,18 @@ class Component extends React.Component {
           <form className={styles.form} noValidate autoComplete="off">
             <p>Customer Data</p>
             <div className={styles.formBlock}>
-              <TextField id="first-name-input" label="First Name" variant="filled" name="firstName" onChange={updateTextField}/>
-              <TextField id="last-name-input" label="Last Name" variant="filled" name="lastName" onChange={updateTextField}/>
-              <TextField id="phone-input" label="phone number" variant="filled" name="phone" onChange={updateTextField}/>
-              <TextField id="emial-input" label="email" variant="filled" name="email" onChange={updateTextField}/>
-              <TextField id="email-confirm-input" label="confirm email" variant="filled"/>
+              <TextField required id="first-name-input" label="First Name" variant="filled" name="firstName" onChange={updateTextField}/>
+              <TextField required id="last-name-input" label="Last Name" variant="filled" name="lastName" onChange={updateTextField}/>
+              <TextField required id="phone-input" label="phone number" variant="filled" name="phone" onChange={updateTextField}/>
+              <TextField required id="emial-input" label="email" variant="filled" name="email" onChange={updateTextField}/>
+              <TextField required id="email-confirm-input" label="confirm email" variant="filled"/>
             </div>
             <p>Payment Address</p>
             <div className={styles.formBlock}>
-              <TextField id="address-street-input" label="Street" variant="filled" name="addressStreet" onChange={updateTextField}/>
-              <TextField id="address-postalcode-input" label="Postal Code" variant="filled" name="addressCode" onChange={updateTextField}/>
-              <TextField id="address-town-input" label="Town" variant="filled" name="addressTown" onChange={updateTextField}/>
-              <TextField id="address-country-input" label="Country" variant="filled" name="addressCountry" onChange={updateTextField}/>
+              <TextField required id="address-street-input" label="Street" variant="filled" name="addressStreet" onChange={updateTextField}/>
+              <TextField required id="address-postalcode-input" label="Postal Code" variant="filled" name="addressCode" onChange={updateTextField}/>
+              <TextField required id="address-town-input" label="Town" variant="filled" name="addressTown" onChange={updateTextField}/>
+              <TextField required id="address-country-input" label="Country" variant="filled" name="addressCountry" onChange={updateTextField}/>
             </div>
             <ExpansionPanel className={styles.panel}>
               <ExpansionPanelSummary

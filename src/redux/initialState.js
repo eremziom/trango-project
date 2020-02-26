@@ -1,5 +1,3 @@
-import db from '../db';
-
 export const initialState = {
   order: {
     orderData:{
@@ -13,7 +11,7 @@ export const initialState = {
     },
   },
   products: {
-    data: db.products,
+    data: '',
     loading: {
       active: false,
       error: false,

@@ -65,6 +65,9 @@
   background-color: $containerColor;
   .panelBar {
     padding: 0;
+    border-top: solid;
+    border-bottom: solid;
+    border-color: $barColor;
     div {
       margin: 0;
     }

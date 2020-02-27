@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 //POSTROUTES IMPORT
 const productRoutes = require('./routes/products.routes');
-//const orderRoutes = require('./routes/oreders.routes');
+const orderRoutes = require('./routes/orders.routes');
 
 const app = express();
 
@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 //API ENDPOINTS
 
 app.use('/api', productRoutes);
-//app.use('/api', orderRoutes);
+app.use('/api', orderRoutes);
 
 //API ERROR PAGE
 

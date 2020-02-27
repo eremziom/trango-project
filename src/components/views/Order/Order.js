@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Order.module.scss';
 
 import { connect } from 'react-redux';
-import { getAll, addCustomer } from '../../../redux/orderRedux';
+import { getAll, addCustomer, sendOrder } from '../../../redux/orderRedux';
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -76,7 +76,12 @@ class Component extends React.Component {
 
   sendOrder = async () => {
     const {addCustomer} = this.props;
+    const {sendOrder} = this.props;
     await this.updateData();
+
+    console.log(this.state);
+
+    await sendOrder(this.state);
 
     addCustomer(this.state);
   }
@@ -171,6 +176,7 @@ class Component extends React.Component {
 Component.propTypes = {
   cartData: PropTypes.array,
   addCustomer: PropTypes.func,
+  sendOrder: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -179,6 +185,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addCustomer: (payload) => dispatch(addCustomer(payload)),
+  sendOrder: (payload) => dispatch(sendOrder(payload)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

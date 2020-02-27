@@ -14,6 +14,7 @@ const FETCH_ERROR = createActionName('FETCH_ERROR');
 const ADD_TO_CART = createActionName('ADD_TO_CART');
 const GO_TO_ORDER = createActionName('GO_TO_ORDER');
 const ADD_CUSTOMER_DATA = createActionName('ADD_CUSTOMER_DATA');
+const ADD_ORDER_SUCCESS = createActionName('ADD_ORDER_SUCCES');
 
 /* action creators */
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
@@ -22,22 +23,23 @@ export const fetchError = payload => ({ payload, type: FETCH_ERROR });
 export const addToCart = payload => ({ payload, type: ADD_TO_CART });
 export const goToOrder = payload => ({payload, type: GO_TO_ORDER});
 export const addCustomer = payload => ({payload, type: ADD_CUSTOMER_DATA});
+export const addOrderSuccess = payload => ({payload, type: ADD_ORDER_SUCCESS});
 
 /* THUNK */
-// export const fetchAllPosts = () => {
-//   return (dispatch, getState) => {
-//     dispatch(fetchStarted());
+export const sendOrder = (newOrder) => {
+  return (dispatch, getState) => {
+    dispatch(fetchStarted());
 
-//     Axios
-//       .get('http://localhost:8000/api/posts')
-//       .then(res => {
-//         dispatch(fetchSuccess(res.data));
-//       })
-//       .catch(err => {
-//         dispatch(fetchError(err.message || true));
-//       });
-//   };
-// };
+    Axios
+      .post('http://localhost:8000/api/order', newOrder)
+      .then(res => {
+        dispatch(addOrderSuccess(newOrder));
+      })
+      .catch(err => {
+        dispatch(fetchError(err.message || true));
+      });
+  };
+};
 
 /* reducer */
 export default function reducer(statePart = [], action = {}) {
@@ -65,6 +67,20 @@ export default function reducer(statePart = [], action = {}) {
     case ADD_CUSTOMER_DATA: {
       return {
         ...statePart,
+        orderData: {
+          cart: statePart.orderData.cart,
+          customerData: action.payload.customerData,
+          details: action.payload.details,
+        },
+      };
+    }
+    case ADD_ORDER_SUCCESS: {
+      return {
+        ...statePart,
+        loading: {
+          active: false,
+          error: false,
+        },
         orderData: {
           cart: statePart.orderData.cart,
           customerData: action.payload.customerData,

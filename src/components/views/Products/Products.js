@@ -16,7 +16,7 @@ class Component extends React.Component {
   componentDidMount = async () => {
     const { fetchProducts } = this.props;
     await fetchProducts();
-    await this.timeout(500);
+    await this.timeout(1000);
     this.prepareCategories();
   }
 

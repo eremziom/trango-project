@@ -1,8 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './Footer.module.scss';
-
-import { FooterIcon } from '../../common/FooterIcon/FooterIcon';
 
 import PhoneIcon from '@material-ui/icons/Phone';
 import MailIcon from '@material-ui/icons/Mail';

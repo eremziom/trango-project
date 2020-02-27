@@ -7,7 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
 import { Header } from '../Header/Header';
-import { PageNav } from '../PageNav/PageNav';
+import { PageNavContainer } from '../PageNav/PageNav';
 import { Footer } from '../Footer/Footer';
 
 const Component = ({children}) => {
@@ -16,7 +16,7 @@ const Component = ({children}) => {
       <Container maxWidth="lg" className={styles.container}>
         <AppBar className={styles.appBar}>
           <Toolbar>
-            <PageNav />
+            <PageNavContainer />
           </Toolbar>
         </AppBar>
         <Toolbar></Toolbar>

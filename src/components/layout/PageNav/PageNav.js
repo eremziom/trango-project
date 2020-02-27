@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import styles from './PageNav.module.scss';
 import clsx from 'clsx';
 
+import { connect } from 'react-redux';
+import { getAll } from '../../../redux/orderRedux.js';
+
 import { MenuButton } from '../../common/MenuButton/MenuButton';
 import Container from '@material-ui/core/Container';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -12,8 +15,16 @@ import HomeIcon from '@material-ui/icons/Home';
 import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
+import Badge from '@material-ui/core/Badge';
 
 class Component extends React.Component {
+
+  componentDidMount() {
+    this.interval = setInterval(() => this.setState({ time: new Date() }), 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
 
   showMenu = () => {
     return(
@@ -40,6 +51,11 @@ class Component extends React.Component {
     menu.classList.toggle(styles.hide);
   }
 
+  showCart = () => {
+    const {stateCart} = this.props;
+    return stateCart.length;
+  }
+
   render(){
     return (
       <Container maxWidth="lg">
@@ -47,7 +63,11 @@ class Component extends React.Component {
           <MenuButton link={'/'}><HomeIcon /></MenuButton>
           {this.showMenu()}
           <Button className={styles.menuIcon} onClick={this.toggleMenu}><MenuIcon /></Button>
-          <MenuButton link={'/cart'}><ShoppingCartIcon /></MenuButton>
+          <MenuButton link={'/cart'}>
+            <Badge color="secondary" badgeContent={this.showCart()}>
+              <ShoppingCartIcon />
+            </Badge>
+          </MenuButton>
         </nav>
         {this.showSmallMenu()}
       </Container>
@@ -55,7 +75,17 @@ class Component extends React.Component {
   }
 }
 
+Component.propTypes = {
+  stateCart: PropTypes.array,
+};
+
+const mapStateToProps = state => ({
+  stateCart: getAll(state),
+});
+
+const Container1 = connect(mapStateToProps)(Component);
+
 export {
   Component as PageNav,
-  //Container as PageNavContainer,
+  Container1 as PageNavContainer,
 };

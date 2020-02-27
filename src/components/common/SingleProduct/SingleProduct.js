@@ -72,7 +72,7 @@ class Component extends React.Component {
     this.setState({product: {...product, length: value}});
   };
 
-  showState = () => {
+  addProduct = () => {
     const {addToCart} = this.props;
     const {product} = this.state;
     this.setPrice(product);
@@ -286,7 +286,7 @@ class Component extends React.Component {
           </CardContent>
         </div>
         <CardActions className={styles.buttons}>
-          <Button size="small" color="primary" className={styles.addToCart} onClick={this.showState}>
+          <Button size="small" color="primary" className={styles.addToCart} onClick={this.addProduct}>
             <AddShoppingCartIcon className={styles.cartIcon} /> ADD TO CART
           </Button>
           <Button size="small" color="primary" className={styles.addToCart} component={Link} exact to={`${process.env.PUBLIC_URL}/products`}>

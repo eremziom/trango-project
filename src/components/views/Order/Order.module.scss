@@ -27,10 +27,6 @@
     margin: 10px;
     text-align: center;
     .product {
-      border: solid;
-      border-radius: 10px;
-      border-width: 3px;
-      margin: 5px;
       background-color: $boxColor;
     }
     .customization {
@@ -40,10 +36,6 @@
     }
     .sumUp {
       display: flex;
-      border: solid;
-      border-radius: 10px;
-      border-width: 3px;
-      margin: 5px;
       background-color: $barColor;
       .sumNumbers{
         color: $lightColor;
@@ -117,6 +109,10 @@
         .product {
           flex: 1 0 0;
           min-width: 250px;
+          border: solid;
+          border-radius: 10px;
+          border-width: 3px;
+          margin: 5px;
         }
       }
     }

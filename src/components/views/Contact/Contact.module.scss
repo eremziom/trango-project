@@ -1,0 +1,52 @@
+@import '../../../styles/settings.scss';
+
+.title{
+  text-align: center;
+  font-family: $mainFont;
+}
+
+.footer {
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  font-family: $mainFont;
+  color: $logoColor;
+  .logo{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    .title {
+      font-family: $logoFont;
+      font-size: 20px;
+      margin: 10px 0;
+    }
+  }
+  .contact {
+    align-self: center;
+    padding-top: 20px;
+  }
+  .links {
+    text-decoration: none;
+    color: inherit;
+    padding-right: 20px;
+  }
+  .developer {
+    align-self: center;
+    padding-top: 20px;
+    .sign {
+      font-family: $signFont;
+    }
+  }
+  .icon {
+    font-size: 1rem;
+    margin-right: 10px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .footer {
+    display: block;
+    height: 260px;
+    bottom: -260px;
+  }
+}

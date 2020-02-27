@@ -8,8 +8,22 @@
   margin-left: 10px;
 }
 
-.price {
+.title{
+  text-align: center;
+}
 
+.background {
+  font-family: $mainFont;
+  .totalPrice {
+    font-size: 16px;
+    color: $lightColor;
+    text-align: center;
+    background-color: $barColor;
+    span{
+      font-size: 25px;
+      color: $containerColor;
+    }
+  }
 }
 
 .buttons{

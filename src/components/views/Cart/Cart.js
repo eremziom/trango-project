@@ -4,7 +4,7 @@ import styles from './Cart.module.scss';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { getAll, goToOrder } from '../../../redux/orderRedux';
+import { getAll, goToOrder, removeFromCart } from '../../../redux/orderRedux';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -73,11 +73,14 @@ class Component extends React.Component {
     return priceTotal;
   }
 
-  deleteProduct = (product) => {
+  deleteProduct = async (product) => {
     const {cart} = this.state;
+    const {removeFromCart} = this.props;
     let newCart = cart;
+
     newCart.splice(newCart.indexOf(product), 1);
-    this.setState({cart: newCart});
+    await this.setState({cart: newCart});
+    await removeFromCart(cart);
   }
 
   toOrder = () => {
@@ -93,7 +96,7 @@ class Component extends React.Component {
 
     return (
       <div className={styles.background}>
-        <p className={styles.title}>Cart</p>
+        <h2 className={styles.title}>Your Cart</h2>
         <TableContainer component={Paper}>
           <Table aria-label="simple table">
             <TableHead>
@@ -147,7 +150,7 @@ class Component extends React.Component {
               }) : ''}
             </TableBody>
           </Table>
-          <div>Total Price: {this.showTotalPrice()}</div>
+          <div className={styles.totalPrice}>Total Price: <span>{this.showTotalPrice()}</span>$</div>
           <div className={styles.buttons}>
             <Button size="small" color="primary" className={styles.addToCart} onClick={this.toOrder}>
               <LocalShippingIcon className={styles.cartIcon} /> Order
@@ -167,6 +170,7 @@ Component.propTypes = {
   stateCart: PropTypes.array,
   goToOrder: PropTypes.func,
   history: PropTypes.object,
+  removeFromCart: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -175,6 +179,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   goToOrder: (payload) => dispatch(goToOrder(payload)),
+  removeFromCart: (payload) => dispatch(removeFromCart(payload)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

@@ -6,6 +6,7 @@ router.get('/products', async (req, res) => {
   try {
     const result = await Product
     .find()
+    .select('name category photo')
     if(!result) res.status(404).json({ post: 'Not found...'});
     else res.json(result);
   }

@@ -99,6 +99,21 @@
   }
 }
 
+.hide {
+  display: none;
+}
+
+.conclusion {
+  display: none;
+  .payment {
+    text-align: center;
+  }
+}
+
+.show {
+  display: block;
+}
+
 @media only screen and (max-width: 1023px) {
   .container {
     flex-direction: column;

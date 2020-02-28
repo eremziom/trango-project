@@ -32,6 +32,7 @@ const orderSchema = new mongoose.Schema({
   details: {
     orderDate: {type: String},
     totalPrice: {type: Number},
+    orderNumber: {type: String},
   },
 });
 

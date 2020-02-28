@@ -14,7 +14,7 @@ const FETCH_ERROR = createActionName('FETCH_ERROR');
 const ADD_TO_CART = createActionName('ADD_TO_CART');
 const REMOVE_FROM_CART = createActionName('REMOVE_FROM_CART');
 const GO_TO_ORDER = createActionName('GO_TO_ORDER');
-const ADD_CUSTOMER_DATA = createActionName('ADD_CUSTOMER_DATA');
+const CLEAR_CART = createActionName('CLEAR_CART');
 const ADD_ORDER_SUCCESS = createActionName('ADD_ORDER_SUCCES');
 
 /* action creators */
@@ -24,7 +24,7 @@ export const fetchError = payload => ({ payload, type: FETCH_ERROR });
 export const addToCart = payload => ({ payload, type: ADD_TO_CART });
 export const removeFromCart = payload => ({payload, type: REMOVE_FROM_CART});
 export const goToOrder = payload => ({payload, type: GO_TO_ORDER});
-export const addCustomer = payload => ({payload, type: ADD_CUSTOMER_DATA});
+export const clearCart = payload => ({payload, type: CLEAR_CART});
 export const addOrderSuccess = payload => ({payload, type: ADD_ORDER_SUCCESS});
 
 /* THUNK */
@@ -66,13 +66,13 @@ export default function reducer(statePart = [], action = {}) {
         },
       };
     }
-    case ADD_CUSTOMER_DATA: {
+    case CLEAR_CART: {
       return {
         ...statePart,
         orderData: {
-          cart: statePart.orderData.cart,
-          customerData: action.payload.customerData,
-          details: action.payload.details,
+          cart: [],
+          customerData: {},
+          details: {},
         },
       };
     }

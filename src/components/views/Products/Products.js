@@ -17,7 +17,13 @@ class Component extends React.Component {
     const { fetchProducts } = this.props;
     await fetchProducts();
     await this.timeout(1000);
+    this.animateMenu();
     this.prepareCategories();
+  }
+
+  animateMenu = () => {
+    const menuButtons = document.getElementById('menu');
+    menuButtons.classList.add(styles.showButtons);
   }
 
   timeout(ms) {
@@ -64,7 +70,7 @@ class Component extends React.Component {
     return (
       <div className={styles.background}>
         <h2 className={styles.title}>What are You looking for ?</h2>
-        <div className={styles.categoryMenu}>
+        <div className={styles.categoryMenu} id='menu'>
           {categories.map(item => {
             return(
               <CategoryButton key={item} onChildClick={this.handleChildClick} category={item}>{item}</CategoryButton>

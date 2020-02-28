@@ -9,6 +9,11 @@
   .categoryMenu {
     display: flex;
     justify-content: space-between;
+    opacity: 0;
+  }
+  .showButtons {
+    opacity: 1;
+    transition: opacity 1s;
   }
   .allButton {
     display: flex;

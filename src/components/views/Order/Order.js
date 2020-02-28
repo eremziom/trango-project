@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Order.module.scss';
 
+import randomstring from 'randomstring';
+
 import { connect } from 'react-redux';
-import { getAll, addCustomer, sendOrder } from '../../../redux/orderRedux';
+import { getAll, clearCart, sendOrder } from '../../../redux/orderRedux';
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -38,8 +40,13 @@ class Component extends React.Component {
     const { details } = this.state;
     const totalPrice = await this.countPrice(cartData);
     const date = document.getElementById('date-input');
+    const ordNumber = randomstring.generate({
+      length: 6,
+      charset: 'alphanumeric',
+      capitalization: 'uppercase',
+    });
 
-    this.setState({details: {...details, orderDate: date.value, totalPrice: totalPrice}});
+    this.setState({details: {...details, orderDate: date.value, totalPrice: totalPrice, orderNumber: ordNumber}});
   }
 
   giveDate = () => {
@@ -75,15 +82,25 @@ class Component extends React.Component {
   }
 
   sendOrder = async () => {
-    const {addCustomer} = this.props;
+    const {clearCart} = this.props;
     const {sendOrder} = this.props;
+
     await this.updateData();
-
-    console.log(this.state);
-
     await sendOrder(this.state);
+    this.showOrderConclusion();
+    await this.timeout(2000);
+    await clearCart(this.state);
+  }
 
-    addCustomer(this.state);
+  timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  showOrderConclusion = () => {
+    const hide = document.getElementById('container');
+    const show = document.getElementById('conclusion');
+    hide.classList.add(styles.hide);
+    show.classList.add(styles.show);
   }
 
   render() {
@@ -92,7 +109,7 @@ class Component extends React.Component {
     return (
       <div className={styles.background}>
         <h2 className={styles.title}>Order Summary</h2>
-        <div className={styles.container}>
+        <div className={styles.container} id='container'>
           <form className={styles.form} noValidate autoComplete="off">
             <p>Customer Data</p>
             <div className={styles.formBlock}>
@@ -168,6 +185,16 @@ class Component extends React.Component {
             </div>
           </div>
         </div>
+        <div className={styles.conclusion} id='conclusion'>
+          <h2 className={styles.title}>Your Order (number {this.state.details.orderNumber}) has been sent!</h2>
+          <div className={styles.payment}>
+            <h5>Paymant Details:</h5>
+            <p>Bank America S.C. 55 3456 0000 9822 0001 8990</p>
+            <p>Payment title: order number: {this.state.details.orderNumber}</p>
+            <p>Payment: {this.state.details.totalPrice}$</p>
+            <p>Lorem ipsum</p>
+          </div>
+        </div>
       </div>
     );
   }
@@ -177,6 +204,7 @@ Component.propTypes = {
   cartData: PropTypes.array,
   addCustomer: PropTypes.func,
   sendOrder: PropTypes.func,
+  clearCart: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -184,7 +212,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addCustomer: (payload) => dispatch(addCustomer(payload)),
+  clearCart: (payload) => dispatch(clearCart(payload)),
   sendOrder: (payload) => dispatch(sendOrder(payload)),
 });
 

@@ -12,6 +12,10 @@
 
 In the project directory, you can run:
 
+### `yarn install`
+
+To install all dependencies.
+
 ### `yarn start`
 
 Runs the app together with server<br />
